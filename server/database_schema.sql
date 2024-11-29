@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS Department (
     location VARCHAR(255),
     description TEXT
 );
-
+CREATE TABLE Roles (
+    role_id INT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(100) NOT NULL UNIQUE
+);
 -- Table 2: User (without foreign key to Department for now)
 CREATE TABLE IF NOT EXISTS User (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,17 +19,18 @@ CREATE TABLE IF NOT EXISTS User (
     last_name VARCHAR(100),
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
-    role ENUM('admin', 'manager', 'employee','maintenance_staff ', 'sales'),
+    role_id INT,
     phone_number VARCHAR(15),
     department_id INT,
     currently_employed BOOLEAN,
     address VARCHAR(255),
     hire_date DATE,
     termination_date DATE,
-    job_title VARCHAR(100)
+    job_title VARCHAR(100),
+	FOREIGN KEY (role_id) REFERENCES Roles(role_id),
+    FOREIGN KEY (department_id) REFERENCES Department(department_id)
 );
 
--- Add the foreign key constraint after the User table is created
 
 
 -- Table 3: Factory

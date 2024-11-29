@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #f0f4f7, #d9e2ec);
+}
+
+.add-machine-container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-machine-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border 0.3s;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border: 1px solid #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+.add-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: #6c63ff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-button:hover {
+    background: #5a55e0;
+}
+
+.add-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.add-machine-message {
+    color: #ff4f4f;
+    text-align: center;
+}
+
+.add-machine-loading {
+    text-align: center;
+    color: #333;
+}

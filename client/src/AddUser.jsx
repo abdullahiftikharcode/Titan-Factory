@@ -1,28 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AddUser({ token, addUser }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState(''); // Role field for new user
-  const [address, setAddress] = useState(''); // New state for address
-  const [phoneNumber, setPhoneNumber] = useState(''); // New state for phone number
+  const [role, setRole] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [roles, setRoles] = useState([]); // State to store roles from API
+
+  // Fetch roles from API on component mount
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/roles', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setRoles(data); // Set roles from API response
+        } else {
+          console.error('Failed to fetch roles:', data.error);
+        }
+      } catch (error) {
+        console.error('Error fetching roles:', error);
+      }
+    };
+
+    fetchRoles();
+  }, [token]);
 
   const handleAddUser = async (e) => {
     e.preventDefault();
-    
-    // Call the addUser function from App component
-    await addUser(firstName, lastName, email, password, role, address, phoneNumber); // Include phoneNumber
-    
-    // Clear the form after submission
+    await addUser(firstName, lastName, email, password, role, address, phoneNumber);
     setFirstName('');
     setLastName('');
     setEmail('');
     setPassword('');
     setRole('');
-    setAddress(''); // Clear address
-    setPhoneNumber(''); // Clear phone number
+    setAddress('');
+    setPhoneNumber('');
   };
 
   return (
@@ -69,15 +89,13 @@ function AddUser({ token, addUser }) {
           <label>Role:</label>
           <select value={role} onChange={(e) => setRole(e.target.value)} required>
             <option value="">Select Role</option>
-            <option value="admin">Admin</option>
-            <option value="manager">Manager</option>
-            <option value="sales">Sales Team</option>
-            <option value="maintenance_staff">Maintenance Staff</option>
-            <option value="employee">Employee</option>
+            {roles.map((role) => (
+              <option key={role.role_id} value={role.role_name}>{role.role_name}</option>
+            ))}
           </select>
         </div>
         <div>
-          <label>Address:</label> {/* New address field */}
+          <label>Address:</label>
           <input
             type="text"
             value={address}
@@ -86,7 +104,7 @@ function AddUser({ token, addUser }) {
           />
         </div>
         <div>
-          <label>Phone Number:</label> {/* New phone number field */}
+          <label>Phone Number:</label>
           <input
             type="text"
             value={phoneNumber}

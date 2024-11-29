@@ -10,17 +10,24 @@ INSERT INTO Department (department_name, location, description) VALUES
 ('Customer Service', 'Office 4', 'Handles customer inquiries and support'),
 ('Finance', 'Office 5', 'Manages financial records and budgeting');
 
-INSERT INTO User (first_name, last_name, email, password, role, phone_number, department_id, currently_employed, address, hire_date, job_title) VALUES
-('Alice', 'Smith', 'alice.smith@example.com', 'password123', 'admin', '1234567890', 1, TRUE, '123 Elm St', '2023-01-15', 'Factory Manager'),
-('Bob', 'Johnson', 'bob.johnson@example.com', 'password123', 'manager', '2345678901', 2, TRUE, '456 Oak St', '2022-02-20', 'Quality Manager'),
-('Charlie', 'Brown', 'charlie.brown@example.com', 'password123', 'employee', '3456789012', 3, TRUE, '789 Pine St', '2023-03-25', 'Maintenance Worker'),
-('David', 'Williams', 'david.williams@example.com', 'password123', 'sales', '4567890123', 4, TRUE, '321 Maple St', '2023-04-10', 'Sales Executive'),
-('Eve', 'Davis', 'eve.davis@example.com', 'password123', 'employee', '5678901234', 5, TRUE, '654 Cedar St', '2023-05-05', 'HR Officer'),
-('Frank', 'Garcia', 'frank.garcia@example.com', 'password123', 'employee', '6789012345', 6, TRUE, '987 Birch St', '2023-06-15', 'R&D Engineer'),
-('Grace', 'Martinez', 'grace.martinez@example.com', 'password123', 'maintenance_staff', '7890123456', 3, TRUE, '543 Spruce St', '2023-07-20', 'Maintenance Technician'),
-('Hank', 'Lopez', 'hank.lopez@example.com', 'password123', 'employee', '8901234567', 8, TRUE, '321 Elm St', '2023-08-25', 'Logistics Coordinator'),
-('Ivy', 'Wilson', 'ivy.wilson@example.com', 'password123', 'employee', '9012345678', 7, TRUE, '456 Willow St', '2023-09-30', 'IT Support Specialist'),
-('Jack', 'Anderson', 'jack.anderson@example.com', 'password123', 'admin', '0123456789', 9, TRUE, '789 Fir St', '2023-10-05', 'Customer Service Manager');
+INSERT INTO Roles (role_name) VALUES 
+('admin'),
+('manager'),
+('employee'),
+('maintenance_staff'),
+('sales');
+
+INSERT INTO User (first_name, last_name, email, password, role_id, phone_number, department_id, currently_employed, address, hire_date, job_title) VALUES
+('Alice', 'Smith', 'alice.smith@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'admin'), '1234567890', 1, TRUE, '123 Elm St', '2023-01-15', 'Factory Manager'),
+('Bob', 'Johnson', 'bob.johnson@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'manager'), '2345678901', 2, TRUE, '456 Oak St', '2022-02-20', 'Quality Manager'),
+('Charlie', 'Brown', 'charlie.brown@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'employee'), '3456789012', 3, TRUE, '789 Pine St', '2023-03-25', 'Maintenance Worker'),
+('David', 'Williams', 'david.williams@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'sales'), '4567890123', 4, TRUE, '321 Maple St', '2023-04-10', 'Sales Executive'),
+('Eve', 'Davis', 'eve.davis@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'employee'), '5678901234', 5, TRUE, '654 Cedar St', '2023-05-05', 'HR Officer'),
+('Frank', 'Garcia', 'frank.garcia@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'employee'), '6789012345', 6, TRUE, '987 Birch St', '2023-06-15', 'R&D Engineer'),
+('Grace', 'Martinez', 'grace.martinez@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'maintenance_staff'), '7890123456', 3, TRUE, '543 Spruce St', '2023-07-20', 'Maintenance Technician'),
+('Hank', 'Lopez', 'hank.lopez@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'employee'), '8901234567', 8, TRUE, '321 Elm St', '2023-08-25', 'Logistics Coordinator'),
+('Ivy', 'Wilson', 'ivy.wilson@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'employee'), '9012345678', 7, TRUE, '456 Willow St', '2023-09-30', 'IT Support Specialist'),
+('Jack', 'Anderson', 'jack.anderson@example.com', 'password123', (SELECT role_id FROM Roles WHERE role_name = 'admin'), '0123456789', 9, TRUE, '789 Fir St', '2023-10-05', 'Customer Service Manager');
 
 INSERT INTO Factory (factory_name, location, manager_id, established_date, capacity, description) VALUES
 ('Factory A', 'Location A', 1, '2010-05-15', 500, 'Main production facility'),
@@ -60,7 +67,7 @@ INSERT INTO Machine_Maintenance_History (machine_id, performed_by, maintenance_d
 
 INSERT INTO Attendance (user_id, date, check_in_time, check_out_time, status, remarks) VALUES
 (1, '2023-10-01', '09:00:00', '17:00:00', 'present', 'Regular day'),
-(2, '2023-10-01', '09:15:00', '17:00:00', 'late', 'Traffic jam'),
+(2, '2023-10-01', '09:15:00', '17:00:00', 'present', 'Traffic jam'),
 (3, '2023-10-01', '09:00:00', '17:00:00', 'present', 'Regular day'),
 (4, '2023-10-01', '09:05:00', '17:00:00', 'present', 'Regular day'),
 (5, '2023-10-01', '09:00:00', '17:00:00', 'present', 'Regular day'),

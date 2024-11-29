@@ -1,0 +1,166 @@
+.container {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.8em;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.adminPanel {
+    margin-top: 30px;
+}
+
+.adminControls {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    margin-bottom: 30px;
+}
+
+
+.buttonGroup {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+.logoutButton {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+}
+
+.logoutButton:hover {
+    background: linear-gradient(145deg, #c0392b, #a93226);
+}
+
+.loginButton {
+    background: linear-gradient(145deg, #3498db, #2980b9);
+}
+
+.loginButton:hover {
+    background: linear-gradient(145deg, #2980b9, #2471a3);
+}
+
+.notificationButton {
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+}
+
+.notificationButton:hover {
+    background: linear-gradient(145deg, #e67e22, #d35400);
+}
+
+.adminButton {
+    background: linear-gradient(145deg, #27ae60, #229954);
+}
+
+.adminButton:hover {
+    background: linear-gradient(145deg, #229954, #1e8449);
+}
+
+
+.roleButton {
+    background: linear-gradient(145deg, #8e44ad, #71368a);
+}
+
+.roleButton:hover {
+    background: linear-gradient(145deg, #71368a, #5b2c6f);
+}
+
+
+h2 {
+    color: #34495e;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+}
+
+* {
+    transition: color 0.2s, background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.notification-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.notification-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+}
+
+.logoutButton {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.logoutButton:hover {
+    background: linear-gradient(145deg, #c0392b, #a93226);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}

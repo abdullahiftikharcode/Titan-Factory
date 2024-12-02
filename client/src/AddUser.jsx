@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './AddUser.css';  
 
 function AddUser({ token, addUser }) {
   const [firstName, setFirstName] = useState('');
@@ -8,7 +9,7 @@ function AddUser({ token, addUser }) {
   const [role, setRole] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [roles, setRoles] = useState([]); // State to store roles from API
+  const [roles, setRoles] = useState([]);  // State to store roles from API
 
   // Fetch roles from API on component mount
   useEffect(() => {
@@ -21,7 +22,7 @@ function AddUser({ token, addUser }) {
         });
         const data = await response.json();
         if (response.ok) {
-          setRoles(data); // Set roles from API response
+          setRoles(data);  // Set roles from API response
         } else {
           console.error('Failed to fetch roles:', data.error);
         }
@@ -46,10 +47,10 @@ function AddUser({ token, addUser }) {
   };
 
   return (
-    <div>
-      <h1>Add User</h1>
+    <div className="add-user-container">
+      <h1 className="add-user-title">Add User</h1>
       <form onSubmit={handleAddUser}>
-        <div>
+        <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
@@ -58,7 +59,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name:</label>
           <input
             type="text"
@@ -67,7 +68,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -76,7 +77,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -85,7 +86,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Role:</label>
           <select value={role} onChange={(e) => setRole(e.target.value)} required>
             <option value="">Select Role</option>
@@ -94,7 +95,7 @@ function AddUser({ token, addUser }) {
             ))}
           </select>
         </div>
-        <div>
+        <div className="form-group">
           <label>Address:</label>
           <input
             type="text"
@@ -103,7 +104,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Phone Number:</label>
           <input
             type="text"
@@ -112,7 +113,7 @@ function AddUser({ token, addUser }) {
             required
           />
         </div>
-        <button type="submit">Add User</button>
+        <button className="submit-button" type="submit">Add User</button>
       </form>
     </div>
   );

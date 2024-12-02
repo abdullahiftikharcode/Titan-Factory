@@ -1,0 +1,78 @@
+/* Main container for attendance page */
+.attendance-container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff8e1;  /* Light orangish background */
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow effect */
+    font-family: 'Arial', sans-serif; /* Clean and professional font */
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .attendance-container h2 {
+    color: #f57c00;  /* Warm Orange color for the header */
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  
+  /* Textarea styling for remarks */
+  .attendance-container textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f57c00;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #4e4e4e;
+    transition: all 0.3s ease;
+  }
+  
+  /* Textarea focus effect */
+  .attendance-container textarea:focus {
+    outline: none;
+    border-color: #e65100;  /* Slightly darker orange when focused */
+    box-shadow: 0px 0px 8px rgba(255, 87, 34, 0.4); /* Subtle shadow effect */
+  }
+  
+  /* Button styling */
+  .attendance-container button {
+    background-color: #f57c00;  /* Warm Orange */
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft button shadow */
+    margin: 10px;
+  }
+  
+  /* Button hover effect */
+  .attendance-container button:hover {
+    background-color: #e65100;  /* Darker orange on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Status message section */
+  .attendance-container .status-message {
+    margin-top: 20px;
+  }
+  
+  .attendance-container .status-message p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #388e3c; /* Success color */
+  }
+  
+  /* Error messages */
+  .attendance-container .status-message .error {
+    color: #d32f2f;  /* Red color for error */
+  }
+  
+  

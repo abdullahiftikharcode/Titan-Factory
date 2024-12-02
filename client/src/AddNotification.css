@@ -1,0 +1,102 @@
+/* Container Styling */
+.add-notification-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Header Styling */
+  .add-notification-container h1 {
+    text-align: center;
+    color: #444;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  /* Form Layout */
+  .add-notification-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Label Styling */
+  .add-notification-form label {
+    font-size: 16px;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  /* Input Fields */
+  .add-notification-form textarea,
+  .add-notification-form select,
+  .add-notification-form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  /* Focus Effect for Fields */
+  .add-notification-form textarea:focus,
+  .add-notification-form select:focus,
+  .add-notification-form input[type="text"]:focus {
+    border-color: #ff7f50;
+    outline: none;
+  }
+  
+  /* Button Styling */
+  .add-notification-form button {
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #ff7f50, #ff6347); /* Orange Gradient */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: 0 6px 12px rgba(255, 127, 80, 0.2);
+    transition: all 0.3s ease-in-out;
+    width: auto;
+    margin: 0 auto;
+  }
+  
+  /* Button Hover Effect */
+  .add-notification-form button:hover {
+    background: linear-gradient(145deg, #ff6347, #ff7f50); /* Orange Gradient Inverse */
+    box-shadow: 0 10px 15px rgba(255, 127, 80, 0.3);
+    transform: translateY(-3px);
+  }
+  
+  /* Button Active Effect */
+  .add-notification-form button:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(255, 127, 80, 0.2);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .add-notification-container {
+      padding: 20px;
+    }
+  
+    .add-notification-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .add-notification-form button {
+      width: 100%;
+    }
+  }
+  

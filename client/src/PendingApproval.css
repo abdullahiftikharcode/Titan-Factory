@@ -1,0 +1,97 @@
+/* Main Container */
+.pending-approval-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Header Styling */
+  .pending-approval-container h2 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* Requests List */
+  .pending-approval-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pending-approval-container li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pending-approval-container li:hover {
+    transform: translateY(-5px);
+  }
+  
+  .pending-approval-container li strong {
+    color: #007bff;
+    font-size: 1.1rem;
+  }
+  
+  /* Request Details */
+  .pending-approval-container li small {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  /* Approve Button Styling */
+  .pending-approval-container button {
+    background-color: #ff7f50; /* Orange color */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .pending-approval-container button:hover {
+    background-color: #ff6347; /* Darker shade of orange on hover */
+    box-shadow: 0 6px 12px rgba(255, 127, 80, 0.3);
+  }
+  
+  .pending-approval-container button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+  
+  /* No Requests Message */
+  .pending-approval-container li.no-requests {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+  }
+  
+  /* Loading & Error Messages */
+  .loading,
+  .error {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #f44336; /* Red color for error */
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .loading {
+    color: #2196f3; /* Blue color for loading */
+  }
+  

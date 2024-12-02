@@ -1,0 +1,97 @@
+/* General container styling */
+.add-user-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.25);  /* Slightly more opaque */
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);  /* Deeper shadow */
+    backdrop-filter: blur(15px);  /* More prominent blur */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.add-user-container:hover {
+    transform: translateY(-5px);  /* Lift effect */
+}
+
+/* Title styling */
+.add-user-title {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Form field styling */
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+/* Enhanced input and select fields */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(200, 200, 200, 0.5);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3498db;  /* Blue border on focus */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Submit button styling */
+.submit-button {
+    padding: 14px 0;
+    width: 100%;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);  /* Gradient effect */
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.submit-button:hover {
+    background: linear-gradient(90deg, #229954, #1abc9c);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .add-user-container {
+        padding: 20px;
+    }
+
+    .add-user-title {
+        font-size: 2.2em;
+    }
+
+    .submit-button {
+        font-size: 1em;
+    }
+}

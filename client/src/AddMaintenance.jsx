@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import './AddMaintenance.css'; 
 
 function AddMaintenance({ token }) {
   const [machineId, setMachineId] = useState('');
-  const [validMachines, setValidMachines] = useState([]); // Stores valid machine objects
+  const [validMachines, setValidMachines] = useState([]);
   const [description, setDescription] = useState('');
   const maintenanceTypes = ['scheduled', 'unscheduled', 'emergency'];
   const [maintenanceType, setMaintenanceType] = useState('');
-  const [status, setStatus] = useState('active'); // Track selected machine status
+  const [status, setStatus] = useState('active');
   const [error, setError] = useState(null);
 
   // Fetch valid machines from backend
@@ -19,7 +20,7 @@ function AddMaintenance({ token }) {
         const data = await response.json();
 
         if (response.ok) {
-          setValidMachines(data.machines); // No filtering by status here anymore
+          setValidMachines(data.machines);
         } else {
           setError(data.message || 'Failed to fetch machines');
         }
@@ -34,36 +35,26 @@ function AddMaintenance({ token }) {
   // Handle maintenance addition
   const handleAddMaintenance = async (e) => {
     e.preventDefault();
-  
-    // Convert machineId input to a number
-    const selectedMachine = validMachines.find(machine => machine.machine_id === Number(machineId));
-  
+
+    // Validate the machine ID
+    const selectedMachine = validMachines.find(
+      (machine) => machine.machine_id === Number(machineId)
+    );
+
     if (!selectedMachine) {
       setError('Machine ID not found');
       return;
     }
-  
-    // Check if the machine is active and ensure status can be changed
-    if (selectedMachine.status !== 'active' && status !== selectedMachine.status) {
-      setError('Status can only be changed if the machine is active.');
-      return;
-    }
-  
-    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
-    
+
     // Prepare the request body
     const requestBody = {
       machine_id: machineId,
       description,
-      maintenance_date: currentDate,
+      maintenance_date: new Date().toISOString().split('T')[0],
       maintenance_type: maintenanceType,
-      status, // Always include the selected status
+      status,
     };
-  
-    // Log the request body and status being sent to the server
-    console.log("Status being sent to server:", status);
-    console.log("Request body:", requestBody);
-  
+
     try {
       const response = await fetch('http://localhost:3001/add-maintenance', {
         method: 'POST',
@@ -73,43 +64,44 @@ function AddMaintenance({ token }) {
         },
         body: JSON.stringify(requestBody),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert('Maintenance record added successfully');
-        // Do not reset status here, it should remain the same as selected
         setMachineId('');
         setDescription('');
         setMaintenanceType('');
-        setError(null); // Clear error message
+        setStatus('active');
+        setError(null);
       } else {
-        alert(`Failed to add maintenance record: ${data.message}`);
+        setError(data.message || 'Failed to add maintenance record');
       }
     } catch (err) {
-      alert('Error adding maintenance record: ' + err.message);
+      setError('Error adding maintenance record: ' + err.message);
     }
   };
-  
-  
+
   return (
-    <div>
+    <div className="add-maintenance-container">
       <h1>Add Maintenance Record</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleAddMaintenance}>
-        <div>
-          <label>Machine ID:</label>
+        <div className="form-group">
+          <label htmlFor="machineId">Machine ID:</label>
           <input
             type="text"
+            id="machineId"
             value={machineId}
             onChange={(e) => setMachineId(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label>Status:</label>
+        <div className="form-group">
+          <label htmlFor="status">Status:</label>
           <select
+            id="status"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             required
@@ -119,18 +111,20 @@ function AddMaintenance({ token }) {
           </select>
         </div>
 
-        <div>
-          <label>Description:</label>
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
           <textarea
+            id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label>Maintenance Type:</label>
+        <div className="form-group">
+          <label htmlFor="maintenanceType">Maintenance Type:</label>
           <select
+            id="maintenanceType"
             value={maintenanceType}
             onChange={(e) => setMaintenanceType(e.target.value)}
             required

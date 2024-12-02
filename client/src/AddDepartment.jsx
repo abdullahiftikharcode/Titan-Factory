@@ -1,106 +1,225 @@
-import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
+// const AddDepartment = ({ token }) => {
+//     const [departmentName, setDepartmentName] = useState('');
+//     const [managerId, setManagerId] = useState('');
+//     const [managers, setManagers] = useState([]);
+//     const [message, setMessage] = useState('');
+    
+//     useEffect(() => {
+//         // Fetch list of all users who are managers
+//         const fetchManagers = async () => {
+//             try {
+//                 const response = await fetch('http://localhost:3001/get-managers', {
+//                     method: 'GET',
+//                     headers: {
+//                         'Authorization': `Bearer ${token}`,
+//                     },
+//                 });
 
-const AddMachine = ({ token }) => {
-    const [machineName, setMachineName] = useState('');
-    const [machineType, setMachineType] = useState('');
-    const [location, setLocation] = useState('');
-    const [description, setDescription] = useState('');
-    const [message, setMessage] = useState('');
+//                 const data = await response.json();
+//                 if (response.ok) {
+//                     setManagers(data); // Set managers data directly as the response is already the list of manager IDs
+//                 } else {
+//                     setMessage(data.error || 'Failed to load managers');
+//                 }
+//             } catch (error) {
+//                 setMessage('Error fetching managers: ' + error.message);
+//             }
+//         };
 
-    const handleAddMachine = async () => {
-        if (!machineName || !machineType || !location || !description) {
-            setMessage('Please fill in all fields.');
-            return;
+//         fetchManagers();
+//     }, [token]);
+
+//     const handleAddDepartment = async () => {
+//         if (!departmentName || !managerId) {
+//             setMessage('Please fill in all fields.');
+//             return;
+//         }
+
+//         // Check if the entered managerId is valid
+//         const isValidManager = managers.some((manager) => manager.user_id.toString() === managerId);
+
+//         if (!isValidManager) {
+//             setMessage('Incorrect manager ID');
+//             return;
+//         }
+
+//         // Proceed with adding department if the manager ID is valid
+//         try {
+//             const response = await fetch('http://localhost:3001/add-department', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'Authorization': `Bearer ${token}`,
+//                 },
+//                 body: JSON.stringify({ departmentName, managerId }),
+//             });
+
+//             const result = await response.json();
+//             if (response.ok) {
+//                 setMessage('Department added successfully!');
+//                 setDepartmentName('');
+//                 setManagerId('');
+//             } else {
+//                 setMessage(result.error || 'Failed to add department');
+//             }
+//         } catch (error) {
+//             setMessage('Error adding department: ' + error.message);
+//         }
+//     };
+
+//     return (
+//         <div style={styles.container}>
+//             <h2>Add New Department</h2>
+//             {message && <p style={styles.message}>{message}</p>}
+
+//             <div style={styles.formGroup}>
+//                 <label htmlFor="departmentName">Department Name:</label>
+//                 <input
+//                     type="text"
+//                     id="departmentName"
+//                     value={departmentName}
+//                     onChange={(e) => setDepartmentName(e.target.value)}
+//                     style={styles.input}
+//                 />
+//             </div>
+
+//             <div style={styles.formGroup}>
+//                 <label htmlFor="managerId">Assign Manager (User ID):</label>
+//                 <select
+//                     id="managerId"
+//                     value={managerId}
+//                     onChange={(e) => setManagerId(e.target.value)}
+//                     style={styles.select}
+//                 >
+//                     <option value="">Select a manager</option>
+//                     {managers.map((manager) => (
+//                         <option key={manager.user_id} value={manager.user_id}>
+//                             {manager.user_id}
+//                         </option>
+//                     ))}
+//                 </select>
+//             </div>
+
+//             <button onClick={handleAddDepartment} style={styles.button}>
+//                 Add Department
+//             </button>
+//         </div>
+//     );
+// };
+
+// const styles = {
+//     container: { padding: '20px', maxWidth: '600px', margin: '0 auto', textAlign: 'center' },
+//     formGroup: { marginBottom: '15px' },
+//     input: { padding: '10px', width: '100%', fontSize: '16px', marginTop: '5px' },
+//     select: { padding: '10px', width: '100%', fontSize: '16px', marginTop: '5px' },
+//     button: { padding: '10px 20px', fontSize: '16px', cursor: 'pointer', marginTop: '20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px' },
+//     message: { color: '#d9534f' },
+// };
+
+//export default AddDepartment;
+
+import React, { useState, useEffect } from 'react';
+import './AddDepartment.css';
+
+const AddDepartment = ({ token }) => {
+  const [departmentName, setDepartmentName] = useState('');
+  const [managerId, setManagerId] = useState('');
+  const [managers, setManagers] = useState([]);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const fetchManagers = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/get-managers', {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}` },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setManagers(data);
+        } else {
+          setMessage(data.error || 'Failed to load managers');
         }
-
-        // Proceed with adding machine
-        try {
-            const response = await fetch('http://localhost:3001/add-machine', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({ machineName, machineType, location, description }),
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                setMessage('Machine added successfully!');
-                setMachineName('');
-                setMachineType('');
-                setLocation('');
-                setDescription('');
-            } else {
-                setMessage(result.error || 'Failed to add machine');
-            }
-        } catch (error) {
-            setMessage('Error adding machine: ' + error.message);
-        }
+      } catch (error) {
+        setMessage('Error fetching managers: ' + error.message);
+      }
     };
 
-    return (
-        <div style={styles.container}>
-            <h2>Add New Machine</h2>
-            {message && <p style={styles.message}>{message}</p>}
+    fetchManagers();
+  }, [token]);
 
-            <div style={styles.formGroup}>
-                <label htmlFor="machineName">Machine Name:</label>
-                <input
-                    type="text"
-                    id="machineName"
-                    value={machineName}
-                    onChange={(e) => setMachineName(e.target.value)}
-                    style={styles.input}
-                />
-            </div>
+  const handleAddDepartment = async () => {
+    if (!departmentName || !managerId) {
+      setMessage('Please fill in all fields.');
+      return;
+    }
 
-            <div style={styles.formGroup}>
-                <label htmlFor="machineType">Machine Type:</label>
-                <input
-                    type="text"
-                    id="machineType"
-                    value={machineType}
-                    onChange={(e) => setMachineType(e.target.value)}
-                    style={styles.input}
-                />
-            </div>
+    const isValidManager = managers.some((manager) => manager.user_id.toString() === managerId);
+    if (!isValidManager) {
+      setMessage('Incorrect manager ID');
+      return;
+    }
 
-            <div style={styles.formGroup}>
-                <label htmlFor="location">Location:</label>
-                <input
-                    type="text"
-                    id="location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    style={styles.input}
-                />
-            </div>
+    try {
+      const response = await fetch('http://localhost:3001/add-department', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ departmentName, managerId }),
+      });
 
-            <div style={styles.formGroup}>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    style={styles.textarea}
-                />
-            </div>
+      const result = await response.json();
+      if (response.ok) {
+        setMessage('Department added successfully!');
+        setDepartmentName('');
+        setManagerId('');
+      } else {
+        setMessage(result.error || 'Failed to add department');
+      }
+    } catch (error) {
+      setMessage('Error adding department: ' + error.message);
+    }
+  };
 
-            <button onClick={handleAddMachine} style={styles.button}>
-                Add Machine
-            </button>
-        </div>
-    );
+  return (
+    <div className="add-department-container">
+      <h2>Add New Department</h2>
+      {message && <p className="message">{message}</p>}
+
+      <div className="form-group">
+        <label htmlFor="departmentName">Department Name:</label>
+        <input
+          type="text"
+          id="departmentName"
+          value={departmentName}
+          onChange={(e) => setDepartmentName(e.target.value)}
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="managerId">Assign Manager (User ID):</label>
+        <select
+          id="managerId"
+          value={managerId}
+          onChange={(e) => setManagerId(e.target.value)}
+        >
+          <option value="">Select a manager</option>
+          {managers.map((manager) => (
+            <option key={manager.user_id} value={manager.user_id}>
+              {manager.user_id}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <button onClick={handleAddDepartment} className="button">
+        Add Department
+      </button>
+    </div>
+  );
 };
 
-const styles = {
-    container: { padding: '20px', maxWidth: '600px', margin: '0 auto', textAlign: 'center' },
-    formGroup: { marginBottom: '15px' },
-    input: { padding: '10px', width: '100%', fontSize: '16px', marginTop: '5px' },
-    textarea: { padding: '10px', width: '100%', fontSize: '16px', marginTop: '5px', height: '100px' },
-    button: { padding: '10px 20px', fontSize: '16px', cursor: 'pointer', marginTop: '20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px' },
-    message: { color: '#d9534f' },
-};
-
-export default AddMachine;
+export default AddDepartment;

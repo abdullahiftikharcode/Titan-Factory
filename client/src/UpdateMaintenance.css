@@ -1,0 +1,99 @@
+/* Main container scoped to this component */
+.update-maintenance-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #f0f8ff; /* Light bluish background */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling */
+  .update-maintenance-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 1.8em;
+  }
+  
+  /* Form fields */
+  .update-maintenance-container__fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .update-maintenance-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .update-maintenance-container input[type='text'],
+  .update-maintenance-container input[type='number'],
+  .update-maintenance-container select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s;
+  }
+  
+  .update-maintenance-container input:focus,
+  .update-maintenance-container select:focus {
+    border-color: #4a90e2;
+    outline: none;
+  }
+  
+  /* Button styling with bluish shadow effect */
+  .update-maintenance-container button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #4a90e2, #007aff); /* Gradient blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3); /* Bluish shadow */
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  }
+  
+  .update-maintenance-container button:hover {
+    background: linear-gradient(135deg, #007aff, #005bb5);
+    box-shadow: 0 12px 30px rgba(0, 122, 255, 0.5); /* Enhanced shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .update-maintenance-container button:disabled {
+    background: #cccccc;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  
+  /* Message styling */
+  .update-maintenance-container .message {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 15px;
+  }
+  
+  .update-maintenance-container .message.error {
+    color: red;
+  }
+  
+  .update-maintenance-container .message.success {
+    color: green;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .update-maintenance-container {
+      padding: 20px;
+    }
+  }
+  

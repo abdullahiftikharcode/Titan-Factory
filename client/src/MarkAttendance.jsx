@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './MarkAttendance.css';  // Import the CSS file
 
 function AttendancePage({ userId }) {
     const [remarks, setRemarks] = useState('');
@@ -40,7 +41,7 @@ function AttendancePage({ userId }) {
     };
 
     return (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="attendance-container">
             <h2>Attendance</h2>
             
             <div style={{ marginBottom: '20px' }}>
@@ -53,16 +54,16 @@ function AttendancePage({ userId }) {
                 ></textarea>
             </div>
 
-            <button onClick={handleCheckIn} style={{ marginRight: '10px', padding: '10px 20px' }}>
+            <button onClick={handleCheckIn}>
                 Check In
             </button>
-            <button onClick={handleCheckOut} style={{ padding: '10px 20px' }}>
+            <button onClick={handleCheckOut}>
                 Check Out
             </button>
 
-            <div style={{ marginTop: '20px', color: 'green' }}>
-                {checkInStatus && <p>{checkInStatus}</p>}
-                {checkOutStatus && <p>{checkOutStatus}</p>}
+            <div className="status-message">
+                {checkInStatus && <p className={checkInStatus.includes('Error') ? 'error' : ''}>{checkInStatus}</p>}
+                {checkOutStatus && <p className={checkOutStatus.includes('Error') ? 'error' : ''}>{checkOutStatus}</p>}
             </div>
         </div>
     );

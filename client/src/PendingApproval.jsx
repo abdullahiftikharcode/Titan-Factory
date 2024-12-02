@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './PendingApproval.css'; 
 
 const PendingApproval = ({ token }) => {
     const [requests, setRequests] = useState([]);
@@ -78,29 +79,26 @@ const PendingApproval = ({ token }) => {
 
     // Handle loading and error states
     if (loading) {
-        return <div>Loading pending requests...</div>;
+        return <div className="loading">Loading pending requests...</div>;
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="error">Error: {error}</div>;
     }
 
     return (
-        <div>
+        <div className="pending-approval-container">
             <h2>Pending Maintenance Requests</h2>
             <ul>
                 {requests.length === 0 ? (
-                    <li>No pending requests</li>
+                    <li className="no-requests">No pending requests</li>
                 ) : (
                     requests.map((request) => (
-                        <li key={request.history_id} style={{ marginBottom: '15px' }}>
+                        <li key={request.history_id}>
                             <strong>{request.machine_name}</strong>: {request.maintenance_type} <br />
                             <small><strong>Requested by:</strong> {request.performed_by}</small> <br />
                             <small><strong>Maintenance Details:</strong> {request.maintenance_details}</small> <br />
-                            <button 
-                                onClick={() => handleApprove(request.history_id)} 
-                                style={{ marginTop: '10px' }}
-                            >
+                            <button onClick={() => handleApprove(request.history_id)}>
                                 Approve
                             </button>
                         </li>

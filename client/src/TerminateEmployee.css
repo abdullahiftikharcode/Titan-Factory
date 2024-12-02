@@ -1,0 +1,123 @@
+/* Global styles for the container */
+.terminate-employee-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffebf0, #f3f4f6);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Title styling */
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  /* Form styling */
+  .terminate-employee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Input and select fields */
+  .terminate-employee-form input {
+    padding: 14px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Input field on focus */
+  .terminate-employee-form input:focus {
+    border-color: #f44336;
+    box-shadow: 0 0 5px rgba(244, 67, 54, 0.3);
+    outline: none;
+  }
+  
+  /* Button styling */
+  .terminate-employee-form button {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Button hover and active states */
+  .terminate-employee-form button:hover {
+    background-color: #e53935;
+  }
+  
+  .terminate-employee-form button:active {
+    background-color: #c62828;
+  }
+  
+  /* Message box styling */
+  .terminate-employee-message {
+    margin-top: 25px;
+    padding: 18px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* Success message */
+  .terminate-employee-message.success {
+    background-color: #28a745;
+    border: 1px solid #1e7e34;
+  }
+  
+  /* Error message */
+  .terminate-employee-message.error {
+    background-color: #dc3545;
+    border: 1px solid #c82333;
+  }
+  
+  /* Responsive design for mobile */
+  @media (max-width: 768px) {
+    .terminate-employee-container {
+      padding: 25px;
+    }
+  
+    .terminate-employee-form {
+      gap: 15px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    .terminate-employee-form input,
+    .terminate-employee-form button {
+      font-size: 14px;
+      padding: 12px;
+    }
+  }
+  
+  /* Animation for form elements */
+  .terminate-employee-form input,
+  .terminate-employee-form button {
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .terminate-employee-form input:hover,
+  .terminate-employee-form button:hover {
+    transform: scale(1.02);
+  }
+  

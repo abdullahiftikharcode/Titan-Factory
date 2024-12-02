@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Corrected import
+import {jwtDecode} from 'jwt-decode';
 import ShowNotification from './ShowNotification';
 import './Home.css';
 

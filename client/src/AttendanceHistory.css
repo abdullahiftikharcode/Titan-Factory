@@ -1,0 +1,109 @@
+/* Container for the attendance history */
+  .attendance-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 90%;
+    max-width: 800px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .attendance-container h2 {
+    color: #4e54c8;  /* Deep purple color */
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Form styling */
+  .attendance-container form {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .attendance-container input {
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #8f94fb; /* Light purple border */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .attendance-container input:focus {
+    border-color: #4e54c8; /* Darker border on focus */
+    outline: none;
+  }
+  
+  /* Button styling */
+  .attendance-container button {
+    background-color: #4e54c8;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .attendance-container button:hover {
+    background-color: #8f94fb;
+    transform: translateY(-3px); /* Lift effect */
+  }
+  
+  /* Error message styling */
+  .attendance-container p {
+    color: #d32f2f; /* Red color for errors */
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Table styling */
+  .attendance-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .attendance-container th, 
+  .attendance-container td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .attendance-container th {
+    background-color: #4e54c8;
+    color: white;
+    font-size: 1.1rem;
+  }
+  
+  .attendance-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .attendance-container tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .attendance-container input {
+      width: 100%;
+    }
+  
+    .attendance-container table {
+      font-size: 0.9rem;
+    }
+  }
+  

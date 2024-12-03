@@ -1,0 +1,88 @@
+/* Scoped container for AddMaintenance */
+.add-maintenance-container {
+    background-color: #f0f8ff; /* Light bluish background */
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Scoped header styling */
+  .add-maintenance-container h1 {
+    color: #004080; /* Dark blue */
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Scoped form group styling */
+  .add-maintenance-container .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .add-maintenance-container .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #004080; /* Dark blue */
+    font-weight: bold;
+  }
+  
+  .add-maintenance-container .form-group input,
+  .add-maintenance-container .form-group textarea,
+  .add-maintenance-container .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #a8c7e7; /* Light blue border */
+    border-radius: 5px;
+    background-color: #e6f2ff; /* Very light blue */
+    color: #004080;
+    transition: border-color 0.3s;
+  }
+  
+  /* Input and Select Focus */
+  .add-maintenance-container .form-group input:focus,
+  .add-maintenance-container .form-group textarea:focus,
+  .add-maintenance-container .form-group select:focus {
+    border-color: #004080; /* Dark blue */
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 64, 128, 0.2); /* Blue glow */
+  }
+  
+  /* Scoped button styling */
+  .add-maintenance-container button {
+    width: 100%;
+    background-color: #004080; /* Dark blue */
+    color: white;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  /* Button Hover Effect */
+  .add-maintenance-container button:hover {
+    background-color: #0066cc; /* Bright blue */
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4); /* Bluish shadow */
+  }
+  
+  /* Scoped error message styling */
+  .add-maintenance-container .error-message {
+    color: #ff4c4c; /* Red for error */
+    background-color: #ffe6e6; /* Light red background */
+    border-left: 5px solid #ff4c4c;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .add-maintenance-container {
+      padding: 1.5rem;
+    }
+  }
+  

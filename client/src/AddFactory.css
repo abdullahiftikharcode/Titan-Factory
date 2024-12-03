@@ -1,0 +1,111 @@
+/* Container styling */
+.add-factory-container {
+    padding: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+/* Title styling */
+.add-factory-container h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form input field styling */
+.add-factory-form input,
+.add-factory-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Input focus effect */
+.add-factory-form input:focus,
+.add-factory-form textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Label styling */
+.add-factory-form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Button styling */
+.add-factory-form button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover effect with shadow animation */
+.add-factory-form button:hover {
+    background-color: #45a049;
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Button active effect */
+.add-factory-form button:active {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+/* Error/success message styling */
+.add-factory-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.add-factory-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.add-factory-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .add-factory-container {
+        padding: 20px;
+    }
+    
+    .add-factory-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .add-factory-form button {
+        width: 100%;
+    }
+}

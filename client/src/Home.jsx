@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Corrected import
+import {jwtDecode} from 'jwt-decode';
 import ShowNotification from './ShowNotification';
 import './Home.css';
 
@@ -141,7 +141,7 @@ function Home({ email, loggedIn, setLoggedIn, role }) {
 
                     {['admin', 'manager', 'sales', 'employee', 'maintenance_staff'].includes(role) && (
                         <div className="adminControls">
-                            {markAttendanceButton}
+                         {markAttendanceButton}
                             {payrollButton} {/* Added the Show Payroll button */}
                         </div>
                     )}

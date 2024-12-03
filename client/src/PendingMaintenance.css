@@ -1,0 +1,93 @@
+/* Container for centering and consistent padding */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main content styling */
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden; /* Prevents corners from being visible */
+  }
+  
+  /* Header row styling */
+  th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Table cell styling */
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    color: #555;
+    font-size: 16px;
+  }
+  
+  /* Zebra striping for rows */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Row hover effect */
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Empty state when no data is available */
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
+  }
+  
+  /* Loading and error states */
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 18px;
+    color: #e74c3c;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  /* Small screen adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+    }
+  
+    table {
+      font-size: 14px;
+    }
+  
+    th, td {
+      padding: 10px;
+    }
+  }
+  

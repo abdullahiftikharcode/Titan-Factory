@@ -1,4 +1,4 @@
-.container {
+ .container {
     padding: 40px;
     max-width: 900px;
     margin: 0 auto;
@@ -163,4 +163,4 @@ h2 {
     background: linear-gradient(145deg, #c0392b, #a93226);
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
+} 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './PendingMaintenance.css'; 
 
 const PendingMaintenance = () => {
   const [pendingMaintenances, setPendingMaintenances] = useState([]);
@@ -49,15 +50,15 @@ const PendingMaintenance = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error">{error}</div>;
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Pending Maintenance</h1>
       {pendingMaintenances.length === 0 ? (
         <p>No pending maintenance tasks.</p>
@@ -88,3 +89,4 @@ const PendingMaintenance = () => {
 };
 
 export default PendingMaintenance;
+

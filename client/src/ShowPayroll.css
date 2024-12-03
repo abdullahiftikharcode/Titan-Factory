@@ -1,0 +1,91 @@
+/* Main container for payroll data */
+.show-payroll-container {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f4f7fb;  /* Light background color */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow effect */
+    font-family: 'Arial', sans-serif; /* Professional font */
+  }
+  
+  /* Header */
+  .show-payroll-container h2 {
+    text-align: center;
+    color: #333;  /* Deep Green for the header */
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  
+  /* Message styling (error or info messages) */
+  .show-payroll-message {
+    color: #e76f51;  /* Soft Coral for errors */
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .show-payroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px; /* Smooth edges */
+    overflow: hidden;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);  /* Table shadow */
+  }
+  
+  /* Table header cell */
+  .show-payroll-table th,
+  .show-payroll-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  /* Header cell (th) styling */
+  .show-payroll-table th {
+    background-color: #2a9d8f;  /* Deep Green for header */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Row cell (td) styling */
+  .show-payroll-table td {
+    background-color: #f9f9f9;  /* Light background for rows */
+    color: #495057;  /* Dark gray text */
+  }
+  
+  /* Styling for rows with alternating colors for better readability */
+  .show-payroll-table tr:nth-child(even) {
+    background-color: #f1f1f1;  /* Slightly darker gray for even rows */
+  }
+  
+  .show-payroll-table tr:hover {
+    background-color: #f4a261;  /* Soft Peach for hover effect */
+    color: white;  /* White text on hover */
+  }
+  
+  /* Fallback message when no payroll data is available */
+  .show-payroll-no-data {
+    text-align: center;
+    font-size: 18px;
+    color: #6c757d;
+  }
+  
+  /* Responsive Table Design */
+  @media (max-width: 768px) {
+    .show-payroll-table th, .show-payroll-table td {
+      font-size: 12px;
+      padding: 10px;
+    }
+    .show-payroll-container {
+      padding: 20px;
+    }
+  }
+  
+  

@@ -1,0 +1,82 @@
+/* Container styling */
+.assign-department-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #f9fafc, #eef2ff); /* Soft gradient */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .assign-department-container h2 {
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* Form styling */
+  .assign-department-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Input fields and select dropdown */
+  .assign-department-form input,
+  .assign-department-form select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+  }
+  
+  .assign-department-form input:focus,
+  .assign-department-form select:focus {
+    border-color: #5a67d8; /* Soft blue focus */
+    outline: none;
+    box-shadow: 0 0 10px rgba(90, 103, 216, 0.2);
+  }
+  
+  /* Button styling */
+  .assign-department-form button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #5a67d8; /* Soft blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .assign-department-form button:hover {
+    background-color: #434190; /* Darker blue on hover */
+    transform: scale(1.05);
+  }
+  
+  /* Message styling */
+  .assign-department-message {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #f0f4ff;
+    color: #333;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .assign-department-container {
+      padding: 20px;
+    }
+  
+    .assign-department-form button {
+      font-size: 16px;
+    }
+  }
+  

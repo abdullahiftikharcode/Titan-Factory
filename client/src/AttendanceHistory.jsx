@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AttendanceHistory.css';  
 
 const AttendanceHistory = () => {
     const [userId, setUserId] = useState('');
@@ -33,7 +34,7 @@ const AttendanceHistory = () => {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="attendance-container">
             <h2>Attendance History</h2>
             <form onSubmit={handleSubmit}>
                 <input
@@ -46,7 +47,7 @@ const AttendanceHistory = () => {
                 <button type="submit">Fetch Attendance</button>
             </form>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p>{error}</p>}
 
             {attendanceData.length > 0 && (
                 <table>
@@ -69,7 +70,6 @@ const AttendanceHistory = () => {
                                 <td>{record.check_in_time}</td>
                                 <td>{record.check_out_time}</td>
                                 <td>{record.status}</td>
-                                {/* Removed the Remarks column */}
                             </tr>
                         ))}
                     </tbody>

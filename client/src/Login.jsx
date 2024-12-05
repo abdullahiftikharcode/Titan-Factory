@@ -5,10 +5,19 @@ import './Login.css';
 function Login({ setLoggedIn, setEmail, setRole }) {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Email validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput)) {
+      setMessage('Invalid email format. Please enter a valid email.');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
@@ -28,11 +37,11 @@ function Login({ setLoggedIn, setEmail, setRole }) {
         navigate('/');
       } else {
         const errorData = await response.json();
-        alert(errorData.error);
+        setMessage(errorData.error || 'Login failed. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      setMessage('An error occurred. Please try again.');
     }
   };
 
@@ -63,14 +72,10 @@ function Login({ setLoggedIn, setEmail, setRole }) {
           </div>
           <button type="submit" className="login-button">Login</button>
         </form>
+        {message && <p className="login-message">{message}</p>}
       </div>
     </div>
   );
 }
 
 export default Login;
-
-
-
-
-

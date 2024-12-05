@@ -55,37 +55,37 @@ function decrypt(cipherText, key) {
 // Define API endpoint for login
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  
-  // Query to fetch the user and their role
+
+  // Query to fetch the user and their role, ensuring currently_employed = 1
   const query = `
     SELECT u.user_id, u.email, u.password, r.role_name AS role 
     FROM User u 
     JOIN roles r ON u.role_id = r.role_id 
-    WHERE u.email = ? AND u.password = ?
+    WHERE u.email = ? AND u.password = ? AND u.currently_employed = 1
   `;
 
   db.query(query, [email, password], (err, results) => {
-      if (err) {
-          return res.status(500).json({ error: 'Server error' });
-      }
+    if (err) {
+      return res.status(500).json({ error: 'Server error' });
+    }
 
-      if (results.length > 0) {
-          const user = results[0];
-          const token = jwt.sign(
-              { userId: user.user_id, role: user.role },
-              privateKey,
-              { algorithm: 'RS256', expiresIn: '1h' }
-          );
+    if (results.length > 0) {
+      const user = results[0];
+      const token = jwt.sign(
+        { userId: user.user_id, role: user.role },
+        privateKey,
+        { algorithm: 'RS256', expiresIn: '1h' }
+      );
 
-          res.json({
-              message: 'Successfully logged in',
-              token,
-              role: user.role,
-              userId: user.user_id
-          });
-      } else {
-          res.status(401).json({ error: 'Verification failed' });
-      }
+      res.json({
+        message: 'Successfully logged in',
+        token,
+        role: user.role,
+        userId: user.user_id
+      });
+    } else {
+      res.status(401).json({ error: 'Verification failed or user is not currently employed' });
+    }
   });
 });
 
@@ -112,6 +112,7 @@ app.post('/add-user', (req, res) => {
       }
      
       // Decrypt the incoming data
+      console.log('encripted data :', encryptedData);
       const decryptedData = decrypt(encryptedData, key);
       const { firstName, lastName, email, password, role, address, phoneNumber } = JSON.parse(decryptedData); // Parse decrypted data
       
@@ -205,7 +206,7 @@ app.get('/departments', (req, res) => {
 // Update the assign-department endpoint
 // Update the assign-department endpoint to handle job_title
 app.post('/assign-department', (req, res) => {
-  const { userId, departmentId, jobTitle } = req.body; // Add jobTitle to request body
+  const { email, departmentId, jobTitle } = req.body; // Use email instead of userId
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
@@ -223,10 +224,10 @@ app.post('/assign-department', (req, res) => {
       return res.status(403).json({ error: 'Forbidden: Only admins can assign departments' });
     }
 
-    // Update query to set both department_id and job_title
-    const query = 'UPDATE User SET department_id = ?, job_title = ? WHERE user_id = ?';
+    // Update query to set department_id and job_title using email
+    const query = 'UPDATE User SET department_id = ?, job_title = ? WHERE email = ?';
 
-    db.query(query, [departmentId, jobTitle, userId], (err, result) => {
+    db.query(query, [departmentId, jobTitle, email], (err, result) => {
       if (err) {
         return res.status(500).json({ error: 'Server error' });
       }
@@ -237,9 +238,10 @@ app.post('/assign-department', (req, res) => {
     });
   });
 });
-// Define API endpoint for terminating an employee
+
+// Define API endpoint for terminating an employee using email
 app.post('/terminate-employee', (req, res) => {
-  const { userId } = req.body; // Assuming you will send userId in the request body
+  const { email } = req.body; // Use email instead of userId
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
@@ -257,9 +259,10 @@ app.post('/terminate-employee', (req, res) => {
       return res.status(403).json({ error: 'Forbidden: Only admins can terminate employees' });
     }
 
-    const query = 'UPDATE User SET currently_employed = 0, termination_date = NOW() WHERE user_id = ?';
+    // Update query to terminate employee using email
+    const query = 'UPDATE User SET currently_employed = 0, termination_date = NOW() WHERE email = ?';
 
-    db.query(query, [userId], (err, result) => {
+    db.query(query, [email], (err, result) => {
       if (err) {
         return res.status(500).json({ error: 'Server error' });
       }
@@ -271,41 +274,52 @@ app.post('/terminate-employee', (req, res) => {
   });
 });
 
-// Fetch attendance records for a specific user ID
-app.get('/attendance/:userId', (req, res) => {
-  const userId = req.params.userId;
+// Fetch attendance records for a specific email
+app.get('/attendance/:email', (req, res) => {
+  const email = req.params.email;
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
-      return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    return res.status(401).json({ error: 'Unauthorized: No token provided' });
   }
 
   jwt.verify(token, publicKey, { algorithms: ['RS256'] }, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden: Invalid token' });
+    }
+
+    const userRole = decoded.role;
+
+    // Check if the user role is either 'admin' or 'manager'
+    if (userRole !== 'admin' && userRole !== 'manager') {
+      return res.status(403).json({ error: 'Forbidden: Only admins and managers can access attendance records' });
+    }
+
+    // Query to fetch attendance records for the specified email
+    const query = `
+      SELECT 
+        a.attendance_id, u.email, a.date, a.check_in_time, a.check_out_time, a.status
+      FROM 
+        Attendance a
+      JOIN 
+        User u ON a.user_id = u.user_id
+      WHERE 
+        u.email = ?
+    `;
+
+    db.query(query, [email], (err, results) => {
       if (err) {
-          return res.status(403).json({ error: 'Forbidden: Invalid token' });
+        console.error('Error fetching attendance records:', err);
+        return res.status(500).json({ error: 'Server error' });
       }
-
-      const userRole = decoded.role;
-
-      // Check if the user role is either 'admin' or 'manager'
-      if (userRole !== 'admin' && userRole !== 'manager') {
-          return res.status(403).json({ error: 'Forbidden: Only admins and managers can access attendance records' });
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'No attendance records found for this email' });
       }
-
-      // Query to fetch attendance records for the specified user ID
-      const query = 'SELECT * FROM Attendance WHERE user_id = ?';
-
-      db.query(query, [userId], (err, results) => {
-          if (err) {
-              return res.status(500).json({ error: 'Server error' });
-          }
-          if (results.length === 0) {
-              return res.status(404).json({ error: 'No attendance records found for this user' });
-          }
-          res.json(results);
-      });
+      res.status(200).json(results);
+    });
   });
 });
+
 
 // Define API endpoint for employee check-in
 app.post('/attendance/checkin', (req, res) => {
@@ -382,61 +396,59 @@ app.post('/attendance/checkout', (req, res) => {
 
 
 
-// Define API endpoint to add a new factory
 app.post('/add-factory', (req, res) => {
-  const { factory_name, location, manager_id, established_date, capacity, description } = req.body;
+  const { factory_name, location, manager_email, established_date, capacity, description } = req.body;
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
-      return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    return res.status(401).json({ error: 'Unauthorized: No token provided' });
   }
 
   // Verify token and get user role
   jwt.verify(token, publicKey, { algorithms: ['RS256'] }, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden: Invalid token' });
+    }
+
+    const userRole = decoded.role;
+
+    // Only allow admins to add factories
+    if (userRole !== 'admin') {
+      return res.status(403).json({ error: 'Forbidden: Only admins can add factories' });
+    }
+
+    // Check if the manager_email corresponds to a manager
+    const checkManagerQuery = `SELECT user_id, role FROM User WHERE email = ?`;
+
+    db.query(checkManagerQuery, [manager_email], (err, result) => {
       if (err) {
-          return res.status(403).json({ error: 'Forbidden: Invalid token' });
+        console.error('Error checking manager role:', err);
+        return res.status(500).json({ error: 'Error checking manager role', details: err });
       }
 
-      const userRole = decoded.role;
-
-      // Only allow admins to add factories
-      if (userRole !== 'admin') {
-          return res.status(403).json({ error: 'Forbidden: Only admins can add factories' });
+      if (result.length === 0) {
+        return res.status(404).json({ error: 'Manager not found with the provided email' });
       }
 
-      // Check if the manager_id corresponds to a manager
-      const checkManagerQuery = `SELECT role FROM User WHERE user_id = ?`;
+      const manager = result[0];
+      if (manager.role !== 'manager') {
+        return res.status(400).json({ error: 'Only users with the "manager" role can be assigned as factory managers' });
+      }
 
-      db.query(checkManagerQuery, [manager_id], (err, result) => {
-          if (err) {
-              console.error('Error checking manager role:', err);
-              return res.status(500).json({ error: 'Error checking manager role', details: err });
-          }
+      // Proceed to insert the new factory into the Factory table
+      const insertQuery = `
+        INSERT INTO Factory (factory_name, location, manager_id, established_date, capacity, description)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `;
 
-          if (result.length === 0) {
-              return res.status(404).json({ error: 'User not found' });
-          }
-
-          const managerRole = result[0].role;
-
-          if (managerRole !== 'manager') {
-              return res.status(400).json({ error: 'Only users with the "manager" role can be assigned as factory managers' });
-          }
-
-          // Proceed to insert the new factory into the Factory table
-          const insertQuery = `
-              INSERT INTO Factory (factory_name, location, manager_id, established_date, capacity, description)
-              VALUES (?, ?, ?, ?, ?, ?)
-          `;
-
-          db.query(insertQuery, [factory_name, location, manager_id, established_date, capacity, description], (err, result) => {
-              if (err) {
-                  console.error('Error adding factory:', err); // Log error details
-                  return res.status(500).json({ error: 'Error adding factory', details: err });
-              }
-              res.json({ message: 'Factory added successfully' });
-          });
+      db.query(insertQuery, [factory_name, location, manager.user_id, established_date, capacity, description], (err, result) => {
+        if (err) {
+          console.error('Error adding factory:', err);
+          return res.status(500).json({ error: 'Error adding factory', details: err });
+        }
+        res.json({ message: 'Factory added successfully' });
       });
+    });
   });
 });
 
@@ -1110,3 +1122,8 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
+// git checkout -b ibrahim
+// git push -u origin ibrahim
+
+// git pull
+// git push

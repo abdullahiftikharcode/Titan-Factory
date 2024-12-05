@@ -8,12 +8,12 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const util = require('util');
 const app = express();
+const { spawn } = require('child_process');
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
 // MySQL connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -418,7 +418,7 @@ app.post('/add-factory', (req, res) => {
     }
 
     // Check if the manager_email corresponds to a manager
-    const checkManagerQuery = `SELECT user_id, role FROM User WHERE email = ?`;
+    const checkManagerQuery = `SELECT user_id, role_id FROM User WHERE email = ?`;
 
     db.query(checkManagerQuery, [manager_email], (err, result) => {
       if (err) {
@@ -431,7 +431,7 @@ app.post('/add-factory', (req, res) => {
       }
 
       const manager = result[0];
-      if (manager.role !== 'manager') {
+      if (manager.role_id !== 2 ) {
         return res.status(400).json({ error: 'Only users with the "manager" role can be assigned as factory managers' });
       }
 
@@ -1108,6 +1108,50 @@ app.get('/payroll', (req, res) => {
           }
 
           res.status(200).json(results);
+      });
+  });
+});
+
+
+
+app.post('/chatbot', async (req, res) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+
+  if (!token) {
+      return res.status(401).json({ error: 'Unauthorized: No token provided' });
+  }
+
+  jwt.verify(token, publicKey, { algorithms: ['RS256'] }, (err, decoded) => {
+      if (err) {
+          return res.status(403).json({ error: 'Forbidden: Invalid token' });
+      }
+
+      const { message } = req.body;
+
+      // Spawn a Python process to run the chatbot script
+      const pythonProcess = spawn('python', ['chatbot.py', message]);
+
+      let chatbotResponse = '';
+
+      // Listen for data from the Python script
+      pythonProcess.stdout.on('data', (data) => {
+          chatbotResponse += data.toString();
+      });
+
+      // Handle any error that occurs during the Python script execution
+      pythonProcess.stderr.on('data', (data) => {
+          console.error(`Error: ${data}`);
+      });
+
+      // When the Python process finishes, send the response
+      pythonProcess.on('close', (code) => {
+          if (code === 0) {
+              // Parse the chatbot response from the Python output
+              const response = JSON.parse(chatbotResponse);
+              res.json({ reply: response.reply });
+          } else {
+              res.status(500).json({ error: 'Failed to get a response from chatbot' });
+          }
       });
   });
 });

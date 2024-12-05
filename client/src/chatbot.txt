@@ -1,0 +1,136 @@
+Here are the answers to the chatbot questions based on the TitanFactory project functionalities:
+
+1. User Management & Authentication:
+How can I log in to the system?
+
+Answer: To log in, enter your credentials (username and password) on the login page. Only users with admin privileges can log in to the system.
+Can I reset my password if I forget it?
+
+Answer: Currently, password reset functionality is not implemented. Please contact the IT team for assistance in resetting your password.
+What are the different roles in the system, and what permissions do they have?
+
+Answer: The system has the following roles:
+Admin: Full access to all functionalities, including managing users, departments, machine maintenance, and viewing reports.
+Manager: Can oversee employee activities, approve machine maintenance, and access reports.
+Employee: Can mark their attendance and view personal data.
+Maintenance Staff: Responsible for logging machine maintenance tasks.
+Sales: Can track sales data and generate sales reports.
+How do I update my user information (e.g., address, phone number)?
+
+Answer: To update your information, log in to the system, go to the 'Profile' section, and edit your personal details. Only admin users have permission to update other users' information.
+2. Factory and Machine Management:
+What is the current status of the machines in the factory?
+
+Answer: You can check the current status of all machines in the Machine Management section. Each machine will display its operational status (e.g., running, under maintenance, or idle).
+How do I view the maintenance history of a machine?
+
+Answer: To view maintenance history, navigate to the Machine Management section and select the desired machine. There, you will find a list of all past maintenance activities.
+How do I request machine maintenance or approval for it?
+
+Answer: Employees can request maintenance by selecting the machine in need of service and clicking "Request Maintenance." A factory manager will then review and approve the request.
+What is the next scheduled maintenance for each machine?
+
+Answer: The next scheduled maintenance for each machine is listed in the Maintenance Calendar. You can access this under the Machine Management section.
+How can I check if a machine is under warranty?
+
+Answer: The warranty status of each machine is available in the machine details section. It includes the warranty start and end dates.
+3. Attendance Management:
+How do I mark my attendance for the day?
+
+Answer: To mark your attendance, log in to the system, go to the Attendance Tracking section, and click on "Check In" at the beginning of your shift and "Check Out" when you finish.
+Can I check my past attendance records?
+
+Answer: Yes, you can view your past attendance records by accessing the Attendance History section. This will display your check-in and check-out times for each day.
+What should I do if I forget to check in or out?
+
+Answer: If you forget to check in or out, please contact your manager or HR for assistance in updating your attendance record.
+How is overtime tracked in the system?
+
+Answer: Overtime is tracked automatically based on the hours worked beyond the regular shift hours. This information is displayed in your attendance report.
+4. Sales Reporting:
+How can I generate a sales report for my team?
+
+Answer: To generate a sales report, log in as a sales team member and go to the Sales Reporting section. Select the desired time period and generate the report.
+Can I view past sales reports and track performance?
+
+Answer: Yes, you can view past sales reports in the Sales History section, where you can track your performance over time.
+How does the AI predict future sales trends?
+
+Answer: The AI uses historical sales data to predict trends. It analyzes patterns in sales volumes, seasonal variations, and product demand to generate forecasts.
+How do I track the performance of individual salespersons?
+
+Answer: You can track individual sales performance in the Sales Performance section. This includes data on the number of sales made, revenue generated, and comparison to targets.
+5. AI Features and Chatbot Assistance:
+How does the chatbot help me with navigation within the system?
+
+Answer: The chatbot helps you by answering questions, providing guidance on where to find specific data, and explaining how to use various sections of the system.
+Can the AI predict sales trends, and how accurate is it?
+
+Answer: Yes, the AI predicts sales trends based on historical data. Its accuracy depends on the quality and volume of the data it has been trained on.
+How can I interact with the AI chatbot to get assistance?
+
+Answer: You can type in your questions or concerns in the chatbot interface, and it will provide instant responses based on the system’s knowledge.
+6. Notifications:
+How can I receive notifications about machine maintenance or other critical events?
+
+Answer: Notifications are sent automatically to your email or system dashboard for important events like machine maintenance or approvals.
+Can I view the history of notifications I’ve received?
+
+Answer: Yes, you can view the history of your notifications in the Notifications section of the system.
+7. Payroll Management:
+How is my payroll calculated, including bonuses and deductions?
+
+Answer: Payroll is calculated based on the hours worked, overtime, and any applicable bonuses or deductions. The system automatically generates this information and provides a detailed report.
+Can I view my past payroll records?
+
+Answer: Yes, you can view your payroll records by accessing the Payroll History section. It will display detailed breakdowns for each pay period.
+How does the system calculate overtime pay?
+
+Answer: Overtime is calculated based on the hourly rate for work done beyond the regular working hours. The system multiplies the overtime hours by a predefined rate (usually 1.5x or 2x the regular rate).
+8. Department & Role Management:
+Which department am I currently assigned to, and can I request a change?
+
+Answer: You can view your assigned department in the Employee Profile section. If you need to request a change, please contact HR for approval.
+Can I view all departments in the factory and their details?
+
+Answer: Yes, you can view all department names and their details under the Department Management section, where you can also see department heads and assigned employees.
+How can I assign a department to a new employee?
+
+Answer: Admins and managers can assign a department to a new employee by selecting the employee in the Employee Management section and choosing the department from the dropdown menu.
+9. Product and Inventory Management:
+How do I check the availability of a specific product in the inventory?
+
+Answer: You can check the availability of products in the Inventory Management section. Search by product name or ID to see current stock levels.
+Can I track inventory levels for raw materials and finished products?
+
+Answer: Yes, the system tracks inventory levels for both raw materials and finished products. You can access this information in the Inventory section.
+How do I handle inventory orders and procurement?
+
+Answer: Inventory orders and procurement are managed in the Inventory Ordering section. You can place orders for materials that are running low, and the system will notify suppliers.
+10. Machine Maintenance History:
+How can I log a machine maintenance activity?
+
+Answer: To log a maintenance activity, select the machine in the Machine Management section, click "Log Maintenance," and fill in the details of the maintenance performed.
+What are the maintenance categories for machines (scheduled, unscheduled, emergency)?
+
+Answer: The maintenance categories are:
+Scheduled: Pre-planned maintenance based on machine usage or manufacturer recommendations.
+Unscheduled: Maintenance due to unexpected issues or malfunctions.
+Emergency: Urgent maintenance required due to a critical machine failure.
+How do I request approval for maintenance tasks?
+
+Answer: Maintenance requests need to be approved by the factory manager. You can submit a request through the Machine Management section, and the manager will approve or deny it.
+11. Supplier Management:
+How do I track the suppliers for each inventory item?
+
+Answer: Suppliers are tracked in the Inventory Management section. You can view the supplier details by selecting a product and checking the supplier information.
+Can I view supplier details and their past performance?
+
+Answer: Yes, you can view supplier details, including contact information and historical performance in the Supplier Management section.
+12. General Queries:
+What is the purpose of the TitanFactory system?
+
+Answer: The TitanFactory system aims to optimize factory operations by managing employees, machines, sales, and inventory while integrating AI for predictive analytics and decision-making.
+What are the key functionalities of the system?
+
+Answer: The system includes functionalities like user authentication, attendance tracking, machine maintenance management, sales reporting, payroll management,

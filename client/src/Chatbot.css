@@ -1,0 +1,165 @@
+/* Full-screen chatbot container */
+.chatbot-container {
+    width: 100%;
+    height: 90vh;
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Soft gradient */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+}
+
+/* Chatbot header */
+.chatbot-header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    font-size: 2rem; /* Larger font size */
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Chat messages container */
+.chatbot-messages {
+    width: 100%;
+    max-width: 600px;
+    height: 70%;
+    overflow-y: auto;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between messages */
+    scroll-behavior: smooth; /* Smooth scrolling when navigating messages */
+}
+
+/* Individual chat messages */
+.chatbot-message {
+    padding: 15px;
+    border-radius: 15px; /* Rounded corners */
+    font-size: 1.1rem; /* Slightly larger font */
+    max-width: 75%;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+/* Bot messages */
+.chatbot-message.bot {
+    background-color: #f1f1f1;
+    color: #333;
+    align-self: flex-start;
+    animation: fadeIn 0.3s; /* Animation for bot messages */
+}
+
+/* User messages */
+.chatbot-message.user {
+    background-color: #4CAF50;
+    color: white;
+    align-self: flex-end;
+    font-weight: bold; /* Bold font */
+    font-size: 1rem; /* Smaller font size */
+    max-width: 50%; /* Smaller message box */
+    padding: 10px; /* Reduced padding */
+    animation: fadeIn 0.3s; /* Animation for user messages */
+}   
+/* Input section */
+.chatbot-input {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    bottom: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 25px; /* More rounded */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Input field styling */
+.chatbot-input input {
+    width: 85%;
+    padding: 15px;
+    border-radius: 25px; /* More rounded */
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Input field focus effect */
+.chatbot-input input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Glow effect */
+}
+
+/* Send button styling */
+.chatbot-input button {
+    padding: 15px;
+    width: 15%;
+    border-radius: 25px; /* More rounded */
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+/* Hover effect on button */
+.chatbot-input button :hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Lift effect */
+}
+
+/* Optional loading state styling */
+.chatbot-message.loading {
+    font-style: italic;
+    text-align: center;
+    color: #999;
+    background-color: #f9f9f9; /* Background color */
+    border-radius: 15px; /* Rounded corners */
+    animation: fadeIn 0.3s; /* Animation for loading state */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .chatbot-header {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+
+    .chatbot-message {
+        font-size: 0.9rem; /* Smaller font size for messages */
+    }
+
+    .chatbot-input input {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .chatbot-input button {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

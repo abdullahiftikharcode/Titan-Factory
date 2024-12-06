@@ -17,6 +17,7 @@ import AddMaintenance from './AddMaintenance.jsx';
 import PendingMaintenance from './PendingMaintenance.jsx'; // Import the PendingMaintenance component
 import UpdateMaintenance from './UpdateMaintenance.jsx'; // Import the UpdateMaintenance component
 import ShowPayroll from './ShowPayroll.jsx'; // Import the new ShowPayroll component
+import Chatbot from './Chatbot.jsx';
 import CryptoJS from 'crypto-js';
 import './App.css';
 
@@ -176,6 +177,11 @@ const App = () => {
                     <Route path="/show-payroll" element={
                         <ProtectedRoute allowedRoles={['admin', 'manager', 'sales', 'employee', 'maintenance_staff']}>
                             <ShowPayroll token={localStorage.getItem('token')} />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/chatbot" element={
+                        <ProtectedRoute allowedRoles={['admin', 'manager', 'sales', 'employee', 'maintenance_staff']}>
+                            <Chatbot token={localStorage.getItem('token')} />
                         </ProtectedRoute>
                     } />
                 </Routes>

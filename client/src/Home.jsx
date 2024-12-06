@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import ShowNotification from './ShowNotification';
 import './Home.css';
 
@@ -57,6 +57,7 @@ function Home({ email, loggedIn, setLoggedIn, role }) {
         pendingApprovals: () => navigate('/pending-approvals'),
         pendingMaintenance: () => navigate('/pending-maintenance'),
         showPayroll: () => navigate('/show-payroll'), // Added navigation for ShowPayroll page
+        chatbot: () => navigate('/chatbot'), // Chatbot route
     };
 
     const handleToggleNotifications = () => setShowNotifications((prev) => !prev);
@@ -112,6 +113,12 @@ function Home({ email, loggedIn, setLoggedIn, role }) {
         </button>
     );
 
+    const chatbotButton = (
+        <button className="button roleButton" onClick={navigationHandlers.chatbot}>
+            Open Chatbot
+        </button>
+    );
+
     return (
         <div className="container">
             <h1 className="title">Welcome {loggedIn ? email : 'Guest'}</h1>
@@ -141,8 +148,9 @@ function Home({ email, loggedIn, setLoggedIn, role }) {
 
                     {['admin', 'manager', 'sales', 'employee', 'maintenance_staff'].includes(role) && (
                         <div className="adminControls">
-                         {markAttendanceButton}
+                            {markAttendanceButton}
                             {payrollButton} {/* Added the Show Payroll button */}
+                            {chatbotButton} {/* Added the Chatbot button */}
                         </div>
                     )}
 

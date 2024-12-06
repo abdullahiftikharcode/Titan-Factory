@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddFactory.css'; // Import the enhanced CSS file
 
@@ -10,34 +10,7 @@ function AddFactory({ token }) {
     const [capacity, setCapacity] = useState('');
     const [description, setDescription] = useState('');
     const [message, setMessage] = useState(''); // To display success or error messages
-    const [managers, setManagers] = useState([]); // List of managers fetched from API
     const navigate = useNavigate();
-
-    // Fetch the list of managers on component mount
-    useEffect(() => {
-        const fetchManagers = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/get-managers', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                const data = await response.json();
-                if (response.ok) {
-                    setManagers(data); // Set the list of managers
-                } else {
-                    setMessage({ type: 'error', text: data.error || 'Failed to fetch managers' });
-                }
-            } catch (error) {
-                console.error('Error fetching managers:', error);
-                setMessage({ type: 'error', text: 'An error occurred while fetching managers.' });
-            }
-        };
-
-        fetchManagers();
-    }, [token]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -99,18 +72,12 @@ function AddFactory({ token }) {
                 </div>
                 <div>
                     <label>Manager Email:</label>
-                    <select
+                    <input
+                        type="email"
                         value={manager_email}
                         onChange={(e) => setManagerEmail(e.target.value)}
                         required
-                    >
-                        <option value="">Select Manager</option>
-                        {managers.map((manager) => (
-                            <option key={manager.user_id} value={manager.email}>
-                                {manager.email}
-                            </option>
-                        ))}
-                    </select>
+                    />
                 </div>
                 <div>
                     <label>Established Date:</label>

@@ -1,4 +1,4 @@
-TitanFactory: Industrial Management Reinvented with Technology
+##TitanFactory: Industrial Management Reinvented with Technology
 
 Project Overview
 
